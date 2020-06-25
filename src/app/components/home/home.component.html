@@ -1,0 +1,56 @@
+<div class="ui inverted dimmer" [class.active] ='loading'>
+  <div class="ui text loader">Loading</div>
+</div>
+<p></p>
+<div class="jumbotron jumbotron-fluid bg-white text-center">
+  <div class="container-fluid">  
+        <h1 class="display-3">Covid-19 Tracker</h1>
+        <br>
+        <hr>     
+        
+        <app-maincards
+          [totalConfirmed] = 'totalConfirmed'
+          [totalActive]    = 'totalActive'
+          [totalRecovered] = 'totalRecovered'
+          [totalDeaths]    = 'totalDeaths'
+        > 
+        </app-maincards>  
+        <hr>
+        <div class="ui form">
+          <div class="inline fields">
+            <label for="caseType">Select Case Type: </label>
+            <div class="field">
+              <div class="ui radio checkbox">
+                <input id="c" type="radio" value="c" name="caseType" #c (click)='updateChart(c)' checked="" tabindex="0" class="hidden">
+                <label for="c">Confirmed</label>
+              </div>
+            </div>
+            <div class="field">
+              <div class="ui radio checkbox">
+                <input id="a" type="radio" name="caseType" #a (click)='updateChart(a)' tabindex="0" value = "a"class="hidden">
+                <label for="a">Active</label>
+              </div>
+            </div>
+            <div class="field">
+              <div class="ui radio checkbox">
+                <input  id="r" type="radio" #r (click)='updateChart(r)' name="caseType" tabindex="0" value="r" class="hidden">
+                <label for="r">Recovered</label>
+              </div>
+            </div>
+            <div class="field">
+              <div class="ui radio checkbox">
+                <input  id="d" type="radio" #d (click)='updateChart(d)' name="caseType" tabindex="0" value="d" class="hidden">
+                <label for="d">Deaths</label>
+              </div>
+            </div>
+        </div>
+</div>
+
+<div class="row">
+    <div class="col">
+      <google-chart [data]="pieChart"></google-chart>
+      </div>
+    <div class="col">
+      <google-chart [data]="columnChart"></google-chart>
+    </div>
+</div>

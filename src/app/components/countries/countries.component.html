@@ -1,0 +1,77 @@
+
+    <div class="ui inverted dimmer" [class.active] ='loading'>
+      <div class="ui text loader">Loading</div>
+    </div>
+    <p></p>
+  
+
+<div class="jumbotron jumbotron-fluid bg-white text-center">
+    <div class="container-fluid">
+        <h1 class="display-3">Check your Country</h1>
+        <br>
+        <hr>
+
+        <div class="mx-auto">
+            <div class="form-group col-lg-5 mx-auto" >
+                <label for="country">Select Country</label>
+                <select class="form-control" id="c" #input (change)='updateValues(input.value)'>
+                    <option value="{{country}}" *ngFor = 'let country of countries'>{{country}}</option>
+                </select>
+            </div>
+        </div>
+        <app-maincards
+          [totalConfirmed] = 'totalConfirmed'
+          [totalActive] = 'totalActive'
+          [totalRecovered] = 'totalRecovered'
+          [totalDeaths] = 'totalDeaths'
+        ></app-maincards>
+
+
+        <div class="stats">
+            <div class="row">
+                <div class="col">
+                    <div class="container-fluid">
+                        <div id="table-scroll" class="table-scroll">
+                            <div id="faux-table" class="faux-table" aria="hidden"></div>
+                            <div class="table-wrap">
+                      <table id="main-table" class=" main-table table table-fixed ui celled table">
+                          <thead>
+                              <tr>
+                                  <th scope="col">S.No</th>
+                                  <th scope="col">Date</th>
+                                  <th scope="col">Cases</th>
+                              </tr>
+                          </thead>
+                          <tbody>
+                              <tr *ngFor="let cs of selectedCountry; index as i">
+                                  <td>{{i+1}}</td>
+                                  <td>{{cs.date | date}}</td>
+                                  <td>{{cs.cases}}</td>
+                              </tr>
+                          </tbody>  
+                          <tfoot>
+                              <tr>
+                                  <th scope="col">S.No</th>
+                                  <th scope="col">Date</th>
+                                  <th scope="col">Cases</th>
+                              </tr>
+                          </tfoot>                  
+                      </table>
+                  </div>
+                  </div>
+                </div>
+                </div>
+                
+                  
+                <div class="col">
+                    <google-chart [data]="lineChart"></google-chart>
+                </div>
+    
+        </div> 
+
+        </div>
+        
+        
+           
+        
+        
